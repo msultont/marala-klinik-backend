@@ -2,11 +2,11 @@ import supertest from 'supertest';
 import StatusCodes from 'http-status-codes';
 import { SuperTest, Test } from 'supertest';
 
-import app from '@server';
+import app from 'src/server';
 import UserDao from '@daos/User/UserDao.mock';
-import User, { IUser } from '@entities/User';
-import { pErr } from '@shared/functions';
-import { paramMissingError } from '@shared/constants';
+import User, { IUser } from 'src/utils/node_modules/@entities/User';
+import { pErr } from 'src/utils/functions';
+import { paramMissingError } from 'src/utils/constants';
 import { IReqBody, IResponse } from '../support/types';
 
 
