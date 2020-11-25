@@ -1,7 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Request, Response } from "express";
-import { Hash, PasswordCompare, GenerateToken } from "@utils/Auth";
+import { StatusCodes } from "http-status-codes";
+
 import Admin from "@models/Admin";
-import logger from "@utils/Logger";
+import Logger from "@utils/Logger";
+import { Hash, PasswordCompare, GenerateToken } from "@utils/Auth";
+
+const { NOT_FOUND, UNAUTHORIZED, OK, FORBIDDEN } = StatusCodes;
 
 export const Register = async (
     req: Request,
@@ -18,21 +23,29 @@ export const Login = async (req: Request, res: Response): Promise<Response> => {
     const query = await Admin.findOne({ username: username });
 
     if (!query)
-        return res.status(404).json({
+        return res.status(NOT_FOUND).json({
             success: false,
             message: "Account not found!",
         });
     else {
-        const compare = await PasswordCompare(password, query.password);
+        //@ts-ignore
+        if (query.status === "active") {
+            //@ts-ignore
+            const compare = await PasswordCompare(password, query.password);
 
-        if (compare) {
-            const token = await GenerateToken(query.id, query.username);
-            return res.status(200).json({
-                tokenType: "Bearer",
-                access_token: token,
-                user: query,
-            });
-        }
+            if (compare) {
+                //@ts-ignore
+                const token = await GenerateToken(query.id, query.username);
+                return res.status(OK).json({
+                    tokenType: "Bearer",
+                    access_token: token,
+                    user: query,
+                });
+            }
+        } else
+            return res
+                .status(FORBIDDEN)
+                .json({ message: "Please contact the admin!" });
     }
-    return res.status(401).json("Unauthorized");
+    return res.status(UNAUTHORIZED).json({ message: "Unauthorized!" });
 };

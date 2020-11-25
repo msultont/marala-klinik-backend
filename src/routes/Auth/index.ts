@@ -1,21 +1,18 @@
-import StatusCodes from "http-status-codes";
-import { Request, Response, Router } from "express";
+import { Router } from "express";
 
 import { Login, Register } from "@controllers/Auth";
-import Validator from "@middleware/Validator";
-import { paramMissingError, IRequest } from "src/utils/constants";
+import { LoginValidator, RegisterValidator } from "@middleware/Validator";
 
 const router = Router();
-const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 
 /******************************************************************************
  *            Register - "POST /api/mst/auth/register"
  ******************************************************************************/
-router.post("/register", Validator, Register);
+router.post("/register", RegisterValidator, Register);
 
 /******************************************************************************
  *            Login - "POST /api/mst/auth/login"
  ******************************************************************************/
-router.post("/login", Validator, Login);
+router.post("/login", LoginValidator, Login);
 
 export default router;
