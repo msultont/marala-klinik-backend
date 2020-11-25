@@ -1,29 +1,12 @@
-import dotenv from 'dotenv';
-import commandLineArgs from 'command-line-args';
-import app from '@server';
-import logger from 'src/utils/Logger';
-
-// Setup command line options
-const options = commandLineArgs([
-    {
-        name: 'env',
-        alias: 'e',
-        defaultValue: 'development',
-        type: String,
-    },
-]);
-
-// Set the env file
-const result2 = dotenv.config({
-    path: `./env/${options.env as string}.env`,
-});
-
-if (result2.error) {
-    throw result2.error;
-}
+import "@config/InitialSetup";
+import "@config/DatabaseSetup";
+import App from "@config/ExpressSetup";
+import Logger from "@utils/Logger";
 
 // Start the server
 const port = Number(process.env.PORT || 3000);
-app.listen(port, () => {
-    logger.info('Express server started on port: ' + port);
+App.listen(port, () => {
+    // eslint-disable-next-line no-console
+    console.log("\n\n"); // Adding spacing to the console
+    Logger.info("Express server started on port: " + port);
 });

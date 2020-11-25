@@ -59,6 +59,9 @@
     "skipLibCheck": true, /* Skip type checking of declaration files. */
     "forceConsistentCasingInFileNames": true, /* Disallow inconsistently-cased references to the same file. */
     "paths": {
+      "@config/*": [
+        "src/config/*"
+      ],
       "@controllers/*": [
         "src/controllers/*"
       ],
@@ -68,11 +71,11 @@
       "@models/*": [
         "src/models/*"
       ],
+      "@routes/*": [
+        "src/routes/*"
+      ],
       "@utils/*": [
         "src/utils/*"
-      ],
-      "@server": [
-        "src/server"
       ]
     },
   },
