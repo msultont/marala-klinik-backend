@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express";
 
 import { GetAll } from "@controllers/Patients";
 import authMiddleware from "@middleware/Auth";
-import { paramMissingError, IRequest } from "@utils/constants";
+import { paramMissingError, IRequest } from "@utils/Constants";
 
 const router = Router();
 const { BAD_REQUEST, CREATED, OK } = StatusCodes;
@@ -14,10 +14,10 @@ const { BAD_REQUEST, CREATED, OK } = StatusCodes;
 router.get("/", authMiddleware, GetAll);
 
 /******************************************************************************
- *                       Add One - "POST /api/users/add"
+ *                       Register new patient - "POST /api/mst/patients/register"
  ******************************************************************************/
 
-// router.post("/add", async (req: IRequest, res: Response) => {
+// router.post("/register", async (req: IRequest, res: Response) => {
 //     const { user } = req.body;
 //     if (!user) {
 //         return res.status(BAD_REQUEST).json({

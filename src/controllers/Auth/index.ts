@@ -38,7 +38,7 @@ export const Login = async (req: Request, res: Response): Promise<Response> => {
                 const token = await GenerateToken(query.id, query.username);
                 return res.status(OK).json({
                     tokenType: "Bearer",
-                    access_token: token,
+                    accessToken: token,
                     user: query,
                 });
             }

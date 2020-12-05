@@ -1,10 +1,5 @@
 import mongoose from "mongoose";
 
-export interface IAdmin extends mongoose.Document {
-    username: string,
-    password: string
-}
-
 const AdminSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -30,10 +25,6 @@ const AdminSchema = new mongoose.Schema({
     },
 });
 
-AdminSchema.pre<IAdmin>("save", (next) => {
-    next();
-});
-
-const Admin = mongoose.model<IAdmin>("Admin", AdminSchema);
+const Admin = mongoose.model("Admin", AdminSchema);
 
 export default Admin;
