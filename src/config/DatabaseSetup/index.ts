@@ -7,4 +7,7 @@ Mongoose.connect("mongodb://localhost:27017/marala-klinik", {
     useUnifiedTopology: true,
 })
     .then(() => Logger.info("database connect"))
-    .catch((err) => Logger.err(err));
+    .catch((err) => {
+        Logger.err(err);
+        process.exit(1);
+    });

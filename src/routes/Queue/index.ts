@@ -1,22 +1,33 @@
 import { Router } from "express";
 
-import { GetQueues, RegisterQueue, ResetQueues } from "@controllers/Queue";
+import { GetQueues, GetCurrentQueue, AddQueue, NextQueue, ResetQueues } from "@controllers/Queue";
 
 const router = Router();
 
 /******************************************************************************
- *            Get Queue Data - "GET /api/mst/queue/"
+ *            Get All Queue Data - "GET /api/mst/queue/"
  ******************************************************************************/
 router.get("/", GetQueues);
 
 /******************************************************************************
- *          Register queue - "POST /api/mst/queue/register"
+ *            Get Current Queue - "GET /api/mst/queue/current"
  ******************************************************************************/
-router.post("/register", RegisterQueue);
+router.get("/current", GetCurrentQueue);
+
+/******************************************************************************
+ *          Add new queue - "POST /api/mst/queue/register"
+ ******************************************************************************/
+router.post("/register", AddQueue);
+
+/******************************************************************************
+ *          Next queue - "POST /api/mst/queue/next"
+ ******************************************************************************/
+router.post("/next", NextQueue);
+
 
 /******************************************************************************
  *          Reset queue - "POST /api/mst/queue/reset"
  ******************************************************************************/
-router.delete("/reset", ResetQueues);
+router.post("/reset", ResetQueues);
 
 export default router;

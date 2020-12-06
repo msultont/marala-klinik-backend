@@ -4,42 +4,43 @@ import { StatusCodes } from "http-status-codes";
 import Queue from "@models/Queue";
 import { DateConversion } from "@utils/Conversion";
 
-const { NOT_FOUND, UNAUTHORIZED, OK, FORBIDDEN } = StatusCodes;
+const { OK, BAD_REQUEST } = StatusCodes;
 
-export const ResetQueues = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
-    await Queue.deleteMany({});
-    return res.status(OK).json({ messages: "success!" });
+export const ResetQueues = (req: Request, res: Response) => {
+    Queue.resetQueue();
+    return res.status(OK).json({ message: "success!" });
 };
 
-export const GetQueues = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
-    const data = await Queue.find();
-    return res.status(OK).json(data);
+export const GetCurrentQueue = (req: Request, res: Response) => {
+    const data = Queue.getCurrentQueue();
+    res.status(OK).json({ message: "success!", currentQueue: data });
 };
 
-export const RegisterQueue = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
-    let query = null;
-    const data = await Queue.find();
+export const GetQueues = (req: Request, res: Response) => {
+    const data = Queue.getAllQueues();
+    return res.status(OK).json({ message: "success!", queues: data });
+};
 
-    if (data.length === 0) {
-        query = await Queue.create({
-            queueNumber: 1,
-            createdAt: DateConversion(new Date(), "Asia/Jakarta"),
-        });
-    } else {
-        const lastQueue = data[data.length - 1];
-        query = await Queue.create({
-            queueNumber: lastQueue.queueNumber + 1,
-            createdAt: DateConversion(new Date(), "Asia/Jakarta"),
-        });
+export const AddQueue = (req: Request, res: Response) => {
+    Queue.addQueue();
+    return res.status(OK).json({
+        message: "success!",
+        queue: Queue.getLastQueue(),
+    });
+};
+
+export const NextQueue = (req: Request, res: Response) => {
+    if (Queue.getCurrentQueue() >= Queue.getLastQueue())
+        return res
+            .status(BAD_REQUEST)
+            .json({ message: "failed! no more users." });
+    else {
+        Queue.nextQueue();
+        return res
+            .status(OK)
+            .json({
+                message: "success!",
+                currentQueue: Queue.getCurrentQueue(),
+            });
     }
-    return res.send(query);
 };
