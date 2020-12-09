@@ -20,16 +20,18 @@ const PatientSchema = new mongoose.Schema({
     sex: {
         type: String,
         enum: ["Pria", "Wanita"],
+        required: true
     },
     occupation: {
         type: String,
         enum: [
-            "Wiraswasta",
+            "Pengusaha",
             "PNS",
             "Karyawan Swasta",
             "Freelancer",
             "Pedagang",
         ],
+        required: true
     },
     created_at: {
         type: Date,

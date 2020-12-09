@@ -1,7 +1,7 @@
 import StatusCodes from "http-status-codes";
 import { Request, Response, Router } from "express";
 
-import { GetAll } from "@controllers/Patients";
+import { GetAll, Register } from "@controllers/Patient";
 import authMiddleware from "@middleware/Auth";
 import { paramMissingError, IRequest } from "@utils/Constants";
 
@@ -17,16 +17,7 @@ router.get("/", authMiddleware, GetAll);
  *                       Register new patient - "POST /api/mst/patients/register"
  ******************************************************************************/
 
-// router.post("/register", async (req: IRequest, res: Response) => {
-//     const { user } = req.body;
-//     if (!user) {
-//         return res.status(BAD_REQUEST).json({
-//             error: paramMissingError,
-//         });
-//     }
-//     await userDao.add(user);
-//     return res.status(CREATED).end();
-// });
+router.post("/register", Register);
 
 /******************************************************************************
  *                       Update - "PUT /api/users/update"
