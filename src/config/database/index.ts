@@ -1,5 +1,5 @@
 import Mongoose from "mongoose";
-import Logger from "@utils/Logger";
+import Logger from "@utils/logger";
 
 // Database Connect
 Mongoose.connect("mongodb://localhost:27017/marala-klinik", {
@@ -9,5 +9,4 @@ Mongoose.connect("mongodb://localhost:27017/marala-klinik", {
     .then(() => Logger.info("database connect"))
     .catch((err) => {
         Logger.err(err);
-        process.exit(1);
     });

@@ -1,7 +1,7 @@
-import "@config/InitialSetup";
-import "@config/DatabaseSetup";
-import App from "@config/ExpressSetup";
-import Logger from "@utils/Logger";
+import "@config/initial";
+import "@config/database";
+import App from "@config/express";
+import Logger from "@utils/logger";
 
 // Start the server
 const port = Number(process.env.PORT || 3000);

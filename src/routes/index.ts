@@ -1,8 +1,8 @@
 import { Router } from "express";
 
-import authRouter from "./Auth";
-import patientsRouter from "./Patient";
-import queueRouter from "./Queue";
+import authRouter from "./auth";
+import patientsRouter from "./patient";
+import queueRouter from "./queue";
 
 // Init router and path
 const router = Router();

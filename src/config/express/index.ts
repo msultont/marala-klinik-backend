@@ -8,7 +8,7 @@ import StatusCodes from "http-status-codes";
 import "express-async-errors";
 
 import Router from "@routes/index";
-import Logger from "@utils/Logger";
+import Logger from "@utils/logger";
 
 const App = Express();
 const { BAD_REQUEST } = StatusCodes;
