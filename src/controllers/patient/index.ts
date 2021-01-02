@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import Patient from "@models/patient";
 import { QueueDB } from "@models/queue";
-
+import { StatusCodes } from "http-status-codes";
 import Logger from "@utils/logger";
+
+const { OK, NOT_FOUND } = StatusCodes;
 
 export const Register = async (
     req: Request,
@@ -15,6 +17,21 @@ export const Register = async (
 };
 
 export const GetAll = async (req: Request, res: Response) => {
-    const docs = await req.app.locals.credential;
-    return res.status(200).json(docs);
+    const docs = await Patient.find({});
+    return res.status(OK).json(docs);
+};
+
+export const GetPatient = async (
+    req: Request,
+    res: Response
+): Promise<Response> => {
+    const document = await Patient.find({
+        _id: req.body.patientId,
+        birthPlace: req.body.birthPlace,
+    });
+    if (document.length === 0) return res.status(NOT_FOUND).json({
+        success: false, 
+        message: "document not found!"
+    });
+    return res.status(OK).json(document);
 };

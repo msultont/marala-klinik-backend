@@ -9,7 +9,7 @@ const router = Router();
 
 // Add sub-routes
 router.use("/auth", authRouter);
-router.use("/patient", patientsRouter);
+router.use("/patients", patientsRouter);
 router.use("/queue", queueRouter);
 
 // Export the base-router

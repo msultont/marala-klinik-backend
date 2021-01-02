@@ -1,21 +1,26 @@
 import { Router } from "express";
 
-import { GetAll, Register } from "@controllers/patient";
-import authMiddleware from "@middleware/auth";
-import registerMiddleware from "@middleware/patient";
+import { GetAll, GetPatient, Register } from "@controllers/patient";
+import AuthMiddleware from "@middleware/auth";
+import PatientMiddleware from "@middleware/patient";
 
 const router = Router();
 
 /******************************************************************************
  *            Get All Patients Information - "GET /api/mst/patients/"
  ******************************************************************************/
-router.get("/", authMiddleware, GetAll);
+router.get("/", AuthMiddleware, GetAll);
 
 /******************************************************************************
- *                       Register new patient - "POST /api/mst/patients/register"
+ *            Get Patient by user Id and birth place - "GET /api/mst/patients/patient"
+ ******************************************************************************/
+router.get("/patient", PatientMiddleware, GetPatient);
+
+/******************************************************************************
+ *            Register new patient - "POST /api/mst/patients/register"
  ******************************************************************************/
 
-router.post("/register", registerMiddleware, Register);
+router.post("/register", PatientMiddleware, Register);
 
 /******************************************************************************
  *                       Update - "PUT /api/users/update"
