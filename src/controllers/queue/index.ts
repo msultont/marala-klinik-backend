@@ -1,8 +1,6 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
-
-import Queue from "@models/queue";
-import { DateConversion } from "@utils/conversion";
+import Queue, { QueueDB } from "@models/queue";
 
 const { OK, BAD_REQUEST } = StatusCodes;
 
@@ -36,11 +34,22 @@ export const NextQueue = (req: Request, res: Response) => {
             .json({ message: "failed! no more users." });
     else {
         Queue.nextQueue();
-        return res
-            .status(OK)
-            .json({
-                message: "success!",
-                currentQueue: Queue.getCurrentQueue(),
-            });
+        return res.status(OK).json({
+            message: "success!",
+            currentQueue: Queue.getCurrentQueue(),
+        });
     }
 };
+
+// Controller to access queue database
+export const GetQueuesDB = async (req: Request, res: Response) => {
+    const docs = await QueueDB.find({});
+    return res.status(OK).json(docs);
+};
+
+export const UpdateQueuesDB = async (req: Request, res: Response) => {
+    const { patientId, clinicType } = req.body;
+    await QueueDB.findOneAndUpdate({ patientId: patientId }, { $set: { clinicType: clinicType } });
+    return res.status(OK).json({ message: "successfull" });
+};
+// End of controller to access queue database

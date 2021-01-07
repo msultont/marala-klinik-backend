@@ -1,33 +1,28 @@
 import { Router } from "express";
 
-import { GetQueues, GetCurrentQueue, AddQueue, NextQueue, ResetQueues } from "@controllers/queue";
+import {
+    GetQueues,
+    GetCurrentQueue,
+    AddQueue,
+    NextQueue,
+    ResetQueues,
+    GetQueuesDB,
+    UpdateQueuesDB
+} from "@controllers/queue";
+import AuthMiddleWare from "@middleware/auth";
+import PatientMiddleWare from "@middleware/patient";
 
 const router = Router();
 
-/******************************************************************************
- *            Get All Queue Data - "GET /api/mst/queue/"
- ******************************************************************************/
+// API queue endpoint to get queue number / position
 router.get("/", GetQueues);
-
-/******************************************************************************
- *            Get Current Queue - "GET /api/mst/queue/current"
- ******************************************************************************/
 router.get("/current", GetCurrentQueue);
-
-/******************************************************************************
- *          Add new queue - "POST /api/mst/queue/register"
- ******************************************************************************/
 router.post("/register", AddQueue);
-
-/******************************************************************************
- *          Next queue - "POST /api/mst/queue/next"
- ******************************************************************************/
 router.post("/next", NextQueue);
-
-
-/******************************************************************************
- *          Reset queue - "POST /api/mst/queue/reset"
- ******************************************************************************/
 router.post("/reset", ResetQueues);
+
+// API queue endpoint to access the queue mongoDB database
+router.get("/db/", AuthMiddleWare, GetQueuesDB);
+router.patch("/db/update", AuthMiddleWare, PatientMiddleWare, UpdateQueuesDB)
 
 export default router;

@@ -1,25 +1,12 @@
 import { Router } from "express";
-
 import { GetAll, GetPatient, Register } from "@controllers/patient";
 import AuthMiddleware from "@middleware/auth";
 import PatientMiddleware from "@middleware/patient";
 
 const router = Router();
 
-/******************************************************************************
- *            Get All Patients Information - "GET /api/mst/patients/"
- ******************************************************************************/
 router.get("/", AuthMiddleware, GetAll);
-
-/******************************************************************************
- *            Get Patient by user Id and birth place - "GET /api/mst/patients/patient"
- ******************************************************************************/
 router.get("/patient", PatientMiddleware, GetPatient);
-
-/******************************************************************************
- *            Register new patient - "POST /api/mst/patients/register"
- ******************************************************************************/
-
 router.post("/register", PatientMiddleware, Register);
 
 /******************************************************************************

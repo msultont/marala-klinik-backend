@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import IQueue from "@interface/queue";
 import { QueuePositionGenerator } from "@utils/generator";
 
 class Queue {
@@ -38,13 +39,27 @@ class Queue {
 
 export default Queue;
 
-export const QueueDB = mongoose.model("Queue", new mongoose.Schema({
+export const QueueDB = mongoose.model("Queues", new mongoose.Schema({
     createdAt : {
         type: Date,
         default: Date.now
     },
     patientId: {
         type: String
+    },
+    fullName: {
+        type: String
+    },
+    clinicType: {
+        type: String,
+        default: () => "",
+        enum: [
+            "",
+            "Praktek Dokter Umum",
+            "Praktek Dokter Gigi",
+            "Konsultasi Dokter Bedah",
+            "Konsultasi Psikolog"
+        ]
     },
     position: {
         type: String,
