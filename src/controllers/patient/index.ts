@@ -45,6 +45,5 @@ export const GetPatient = async (
         _id: patientId,
         birthPlace: birthPlace,
     });
-    res.setHeader("Access-Control-Allow-Origin", "*");
     return res.status(OK).json(document);
 };
