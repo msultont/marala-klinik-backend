@@ -8,6 +8,7 @@
     "start:dev": "nodemon",
     "test": "nodemon --config ./spec/nodemon.json"
   },
+  "engines": {"node": "14.15.4"},
   "nodemonConfig": {
     "watch": [
       "src"
