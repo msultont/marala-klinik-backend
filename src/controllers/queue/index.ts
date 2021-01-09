@@ -44,7 +44,7 @@ export const NextQueue = (req: Request, res: Response) => {
 // Controller to access queue database
 export const GetQueuesDB = async (req: Request, res: Response) => {
     const docs = await QueueDB.find({});
-    return res.status(OK).json(docs);
+    return res.status(OK).json({message: "success", data: docs});
 };
 
 export const UpdateQueuesDB = async (req: Request, res: Response) => {
