@@ -5,7 +5,7 @@
     "build": "ts-node build.ts && tsc --build tsconfig.prod.json",
     "lint": "eslint . --ext .ts",
     "start": "node -r module-alias/register ./dist",
-    "postinstall": "tsc",
+    "postinstall": "npm run build",
     "start:dev": "nodemon"
   },
   "engines": {"node": "14.15.4"},
