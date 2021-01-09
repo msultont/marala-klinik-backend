@@ -19,7 +19,7 @@ const { BAD_REQUEST } = StatusCodes;
 
 App.use(CookieParser());
 App.use(Compression());
-App.use(Cors({origin: "https://marala-klinik.vercel.app", optionsSuccessStatus: 200}));
+App.use(Cors());
 App.use(Express.json());
 App.use(Express.urlencoded({ extended: true }));
 
