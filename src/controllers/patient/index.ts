@@ -45,5 +45,5 @@ export const GetPatient = async (
         _id: patientId,
         birthPlace: birthPlace,
     });
-    return res.status(OK).json(document);
+    return res.status(OK).json({message: "success", data: document});
 };
