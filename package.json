@@ -6,8 +6,7 @@
     "lint": "eslint . --ext .ts",
     "start": "node -r module-alias/register ./dist --env=production",
     "postinstall": "tsc",
-    "start:dev": "nodemon",
-    "test": "nodemon --config ./spec/nodemon.json"
+    "start:dev": "nodemon"
   },
   "engines": {"node": "14.15.4"},
   "nodemonConfig": {
