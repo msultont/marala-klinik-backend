@@ -1,1 +1,1 @@
-web: node -r module-alias/register ./dist --env=production
+web: node -r module-alias/register ./dist/index.js --env=production
