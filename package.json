@@ -4,8 +4,7 @@
   "scripts": {
     "build": "ts-node build.ts && tsc --build tsconfig.prod.json",
     "lint": "eslint . --ext .ts",
-    "start": "node -r module-alias/register ./dist",
-    "postinstall": "npm run build",
+    "start": "node -r module-alias/register ./dist --env=production",
     "start:dev": "nodemon"
   },
   "engines": {"node": "14.15.4"},
@@ -20,7 +19,11 @@
   "_moduleAliases": {
     "@models": "dist/models",
     "@utils": "dist/utils",
-    "@server": "dist/server"
+    "@routes": "dist/routes",
+    "@middleware": "dist/middleware",
+    "@interface": "dist/interface",
+    "@controllers": "dist/controllers",
+    "@config": "dist/config"
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
