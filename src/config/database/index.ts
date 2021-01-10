@@ -1,6 +1,7 @@
 import Mongoose from "mongoose";
 import Logger from "@utils/logger";
 
+// eslint-disable-next-line max-len
 const uri = "mongodb+srv://marala-master:4-_1tiAGVCi-Zv@cluster0.xzlau.mongodb.net/marala-clinic?retryWrites=true&w=majority";
 
 // Database Connect
