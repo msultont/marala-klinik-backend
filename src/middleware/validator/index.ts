@@ -31,7 +31,7 @@ export const RegisterValidator = [
     check("username")
         .isString()
         .custom((value) => {
-            return Admin.findOne({ username: value }).then((user) => {
+            return Admin.findOne({ username: value }).then((user: any) => {
                 if (user) return Promise.reject("Username already in use!");
             });
         }),
