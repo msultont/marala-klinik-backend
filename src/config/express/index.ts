@@ -19,7 +19,7 @@ const { BAD_REQUEST } = StatusCodes;
 
 App.use(CookieParser());
 App.use(Compression());
-// App.use(Cors());
+App.use(Cors());
 App.use(Express.json());
 App.use(Express.urlencoded({ extended: true }));
 
