@@ -44,12 +44,12 @@ export const NextQueue = (req: Request, res: Response) => {
 // Controller to access queue database
 export const GetQueuesDB = async (req: Request, res: Response) => {
     const docs = await QueueDB.find({});
-    return res.status(OK).json({message: "success", data: docs});
+    return res.status(OK).json(docs);
 };
 
 export const UpdateQueuesDB = async (req: Request, res: Response) => {
     const { patientId, clinicType } = req.body;
     await QueueDB.findOneAndUpdate({ patientId: patientId }, { $set: { clinicType: clinicType } });
-    return res.status(OK).json({ message: "successfull" });
+    return res.status(OK).json({message: "success"});
 };
 // End of controller to access queue database
