@@ -4,7 +4,7 @@ import Logger from "@utils/logger";
 
 // Database Connect
 Mongoose.connect(
-    "mongodb://localhost:27017/marala-klinik?readPreference=primary&appname=MongoDB%20Compass&ssl=false",
+    "mongodb+srv://marala-master:4-_1tiAGVCi-Zv@cluster0.xzlau.mongodb.net/marala-clinic?authSource=admin&replicaSet=atlas-ypx6w4-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true",
     {
         useNewUrlParser: true,
         useUnifiedTopology: true,
