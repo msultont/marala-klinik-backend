@@ -21,14 +21,6 @@ const QueueSchema = new mongoose.Schema({
     },
     clinicType: {
         type: String,
-        default: () => "",
-        enum: [
-            "",
-            "Praktek Dokter Umum",
-            "Praktek Dokter Gigi",
-            "Konsultasi Dokter Bedah",
-            "Konsultasi Psikolog"
-        ]
     },
     position: {
         type: String,
