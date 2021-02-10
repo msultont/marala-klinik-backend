@@ -30,7 +30,7 @@ export const GetQueuesCounter = async (req: Request, res: Response) => {
 };
 
 export const AddQueue = async (req: Request, res: Response) => {
-    const { patientId, fullName } = req.body;
+    const { patientId, fullName, clinicType } = req.body;
     let counterObject = await Counter.findOne({ name: "queue" });
     await Counter.findOneAndUpdate(
       { name: "queue" },
@@ -40,6 +40,7 @@ export const AddQueue = async (req: Request, res: Response) => {
     await Queue.create({
       patientId: patientId,
       fullName: fullName,
+      clinicType: clinicType,
       position: QueuePositionGenerator() + counterObject.count
   });
     return res.status(OK).json({
