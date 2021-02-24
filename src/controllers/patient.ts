@@ -8,14 +8,14 @@ export const Register = async (
     req: Request,
     res: Response
 ): Promise<Response> => {
-    // const checkDataDuplicate = await Patient.findOne({
-    //     fullName: req.body.fullName,
-    //     currentAddress: req.body.currentAddress,
-    // });
-    // if (checkDataDuplicate)
-    //     return res
-    //         .status(MULTIPLE_CHOICES)
-    //         .json({ message: "Data pasien sudah terdaftar" });
+    const checkDataDuplicate = await Patient.findOne({
+        fullName: req.body.fullName,
+        currentAddress: req.body.currentAddress,
+    });
+    if (checkDataDuplicate)
+        return res
+            .status(MULTIPLE_CHOICES)
+            .json({ message: "Data pasien sudah terdaftar" });
 
     const patientQuery = await Patient.create(req.body);
     return res.send(patientQuery);

@@ -45,10 +45,12 @@ const PatientSchema = new mongoose.Schema({
     occupation: {
         type: String,
         enum: [
-            "Pengusaha",
-            "PNS",
-            "Karyawan Swasta",
             "Freelancer",
+            "Karyawan Swasta",
+            "Mahasiswa",
+            "Pelajar",
+            "Pengusaha",
+            "Pegawai Negeri Sipil",
             "Pedagang",
         ],
         required: true
